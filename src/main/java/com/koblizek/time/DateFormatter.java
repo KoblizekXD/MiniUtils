@@ -16,8 +16,10 @@ public final class DateFormatter implements Formatter {
                 .filter(a -> a.getTimeType() == Formatting.FormattedTime.TimeType.DATE).toList();
         StringBuilder builder = new StringBuilder();
         for (Formatting.FormattedTime date : dates) {
-            builder.append(date.getStr());
+            builder.append(date.getStr())
+                    .append(".");
         }
+        builder.deleteCharAt(builder.length()-1);
         return LocalDate.now()
                 .format(DateTimeFormatter.ofPattern(
                         builder.toString()

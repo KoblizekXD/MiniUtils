@@ -3,6 +3,7 @@ package com.koblizek.time;
 import com.koblizek.time.util.Formatter;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
@@ -15,9 +16,11 @@ public final class TimeFormatter implements Formatter {
                 .filter(a -> a.getTimeType() == Formatting.FormattedTime.TimeType.TIME).toList();
         StringBuilder builder = new StringBuilder();
         for (Formatting.FormattedTime time : times) {
-            builder.append(time.getStr());
+            builder.append(time.getStr())
+                    .append(":");
         }
-        return LocalDate.now()
+        builder.deleteCharAt(builder.length()-1);
+        return LocalTime.now()
                 .format(DateTimeFormatter.ofPattern(
                         builder.toString()
                 ));
