@@ -15,9 +15,17 @@ public class DateTimeFormatter implements Formatter {
         List<Formatting.FormattedTime> times = Arrays.stream(formats)
                 .filter(b -> b.getTimeType() == Formatting.FormattedTime.TimeType.TIME).toList();
         StringBuilder builder = new StringBuilder();
-        for (Formatting.FormattedTime date : dates) {
-            builder.append(date.getStr());
+        for (Formatting.FormattedTime time : times) {
+            builder.append(time.getStr())
+                    .append(":");
         }
+        builder.deleteCharAt(builder.length()-1);
+        builder.append(" ");
+        for (Formatting.FormattedTime date : dates) {
+            builder.append(date.getStr())
+                    .append(".");
+        }
+        builder.deleteCharAt(builder.length()-1);
         return LocalDate.now()
                 .format(java.time.format.DateTimeFormatter.ofPattern(
                         builder.toString()
