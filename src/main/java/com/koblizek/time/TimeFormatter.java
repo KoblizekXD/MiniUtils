@@ -1,11 +1,13 @@
 package com.koblizek.time;
 
+import com.koblizek.time.util.Formatter;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
-public final class TimeFormatter {
+public final class TimeFormatter implements Formatter {
     private TimeFormatter() {}
 
     public static String format(Formatting.FormattedTime[] formats) {
